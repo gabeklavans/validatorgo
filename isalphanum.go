@@ -47,7 +47,7 @@ var writingSystemAlphaNumRegex = map[string]string{
 //
 // Ignore: is the string to be ignored e.g. " -" will ignore spaces and -'s.
 //
-// locale is one of ('ar', 'ar-AE', 'ar-BH', 'ar-DZ', 'ar-EG', 'ar-IQ', 'ar-JO', 'ar-KW', 'ar-LB', 'ar-LY', 'ar-MA', 'ar-QA', 'ar-QM', 'ar-SA', 'ar-SD', 'ar-SY', 'ar-TN', 'ar-YE', 'bn', 'bg-BG', 'cs-CZ', 'da-DK', 'de-DE', 'el-GR', 'en-AU', 'en-GB', 'en-HK', 'en-IN', 'en-NZ', 'en-US', 'en-ZA', 'en-ZM', 'eo', 'es-ES', 'fa-IR', 'fi-FI', 'fr-CA', 'fr-FR', 'he', 'hi-IN', 'hu-HU', 'it-IT', 'kk-KZ', 'ko-KR', 'ja-JP','ku-IQ', 'nb-NO', 'nl-NL', 'nn-NO', 'pl-PL', 'pt-BR', 'pt-PT', 'ru-RU', 'si-LK', 'sl-SI', 'sk-SK', 'sr-RS', 'sr-RS@latin', 'sv-SE', 'th-TH', 'tr-TR', 'uk-UA') and defaults to en-US.
+// locale is one of ("ar", "ar-AE", "ar-BH", "ar-DZ", "ar-EG", "ar-IQ", "ar-JO", "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-QA", "ar-QM", "ar-SA", "ar-SD", "ar-SY", "ar-TN", "ar-YE", "bn", "bg-BG", "cs-CZ", "da-DK", "de-DE", "el-GR", "en-AU", "en-GB", "en-HK", "en-IN", "en-NZ", "en-US", "en-ZA", "en-ZM", "eo", "es-ES", "fa-IR", "fi-FI", "fr-CA", "fr-FR", "he", "hi-IN", "hu-HU", "it-IT", "kk-KZ", "ko-KR", "ja-JP","ku-IQ", "nb-NO", "nl-NL", "nn-NO", "pl-PL", "pt-BR", "pt-PT", "ru-RU", "si-LK", "sl-SI", "sk-SK", "sr-RS", "sr-RS@latin", "sv-SE", "th-TH", "tr-TR", "uk-UA") and defaults to en-US.
 //
 //	isAlpha := validatorgo.IsAlphanumeric("hello123", &validatorgo.IsAlphanumericOpts{})
 //	fmt.Println(isAlpha) // true

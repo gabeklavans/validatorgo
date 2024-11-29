@@ -156,7 +156,7 @@ func escapeRegexChars(str string) string {
 //
 // Ignore: is the string to be ignored e.g. " -" will ignore spaces and -'s.
 //
-// Locale: one of ('ar', 'ar-AE', 'ar-BH', 'ar-DZ', 'ar-EG', 'ar-IQ', 'ar-JO', 'ar-KW', 'ar-LB', 'ar-LY', 'ar-MA', 'ar-QA', 'ar-QM', 'ar-SA', 'ar-SD', 'ar-SY', 'ar-TN', 'ar-YE', 'bg-BG', 'bn', 'cs-CZ', 'da-DK', 'de-DE', 'el-GR', 'en-AU', 'en-GB', 'en-HK', 'en-IN', 'en-NZ', 'en-US', 'en-ZA', 'en-ZM', 'eo', 'es-ES', 'fa-IR', 'fi-FI', 'fr-CA', 'fr-FR', 'he', 'hi-IN', 'hu-HU', 'it-IT', 'kk-KZ', 'ko-KR', 'ja-JP', 'ku-IQ', 'nb-NO', 'nl-NL', 'nn-NO', 'pl-PL', 'pt-BR', 'pt-PT', 'ru-RU', 'si-LK', 'sl-SI', 'sk-SK', 'sr-RS', 'sr-RS@latin', 'sv-SE', 'th-TH', 'tr-TR', 'uk-UA') and defaults to en-US if none is provided.
+// Locale: one of ("ar", "ar-AE", "ar-BH", "ar-DZ", "ar-EG", "ar-IQ", "ar-JO", "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-QA", "ar-QM", "ar-SA", "ar-SD", "ar-SY", "ar-TN", "ar-YE", "bg-BG", "bn", "cs-CZ", "da-DK", "de-DE", "el-GR", "en-AU", "en-GB", "en-HK", "en-IN", "en-NZ", "en-US", "en-ZA", "en-ZM", "eo", "es-ES", "fa-IR", "fi-FI", "fr-CA", "fr-FR", "he", "hi-IN", "hu-HU", "it-IT", "kk-KZ", "ko-KR", "ja-JP", "ku-IQ", "nb-NO", "nl-NL", "nn-NO", "pl-PL", "pt-BR", "pt-PT", "ru-RU", "si-LK", "sl-SI", "sk-SK", "sr-RS", "sr-RS@latin", "sv-SE", "th-TH", "tr-TR", "uk-UA") and defaults to en-US if none is provided.
 //
 //	isAlpha := govalidator.IsAlpha("hello", &govalidator.IsAlphaOpts{})
 //	fmt.Println(isAlpha) // true
