@@ -1,4 +1,4 @@
-// A package for string sanitizers.
+// A package of string sanitizers.
 package sanitizer
 
 import "regexp"

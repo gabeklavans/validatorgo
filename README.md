@@ -203,7 +203,7 @@ Here is a list of the sanitizers currently available.
 
 # Maintainers
 
-- [bube054](https://github.com/bube054) - Attah Gbubemi David (author)
+- [bube054](https://github.com/bube054) - **Attah Gbubemi David (author)**
 
 <!-- # Other related projects
 
