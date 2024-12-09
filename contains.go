@@ -1,4 +1,4 @@
-// A package for string validators.
+// A package of string validators.
 package validatorgo
 
 import "strings"
