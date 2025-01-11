@@ -30,16 +30,16 @@ func IsLength(str string, opts *IsLengthOpts) bool {
 		opts = setIsLengthOptsToDefault()
 	}
 
-	len := uint(utf8.RuneCountInString(str))
+	length := uint(utf8.RuneCountInString(str))
 
 	withinLimits := true
 
 	if opts.Max != nil {
-		isMax := *(opts.Max) >= len
+		isMax := *(opts.Max) >= length
 		withinLimits = withinLimits && isMax
 	}
 
-	isMin := opts.Min <= len
+	isMin := opts.Min <= length
 	withinLimits = withinLimits && isMin
 
 	return withinLimits
