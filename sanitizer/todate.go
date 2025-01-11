@@ -2,32 +2,47 @@ package sanitizer
 
 import "time"
 
+// IsDate formats
+const (
+	StandardDateLayout            = "2006-01-02"
+	SlashDateLayout               = "2006/01/02"
+	DateTimeLayout                = "2006-01-02 15:04:05"
+	ISO8601Layout                 = "2006-01-02T15:04:05"
+	ISO8601ZuluLayout             = "2006-01-02T15:04:05Z"
+	ISO8601WithMillisecondsLayout = "2006-01-02T15:04:05.000Z"
+)
+
+var dateLayouts = []string{StandardDateLayout, SlashDateLayout, DateTimeLayout, ISO8601Layout, ISO8601ZuluLayout, ISO8601WithMillisecondsLayout}
+
+var timeLayouts = []string{
+	time.ANSIC,
+	time.UnixDate,
+	time.RubyDate,
+	time.RFC822,
+	time.RFC822Z,
+	time.RFC850,
+	time.RFC1123,
+	time.RFC1123Z,
+	time.Kitchen,
+	time.Stamp,
+	time.StampMilli,
+	time.StampMicro,
+	time.StampNano,
+	time.DateTime,
+	time.DateOnly,
+	time.TimeOnly,
+}
+
+// var combinedLayouts = append(timeLayouts,)
+
 // A sanitizer that converts the input string to a pointer to time.Time, if the input is not of a time layout returns a nil pointer. e.g (Layout, ANSIC, UnixDate, RubyDate, RFC822, RFC822Z, RFC850, RFC1123, RFC1123Z, Kitchen, Stamp, StampMilli, StampMicro, StampNano, DateTime, DateOnly, TimeOnly)
 //
 //	date := sanitizer.ToDate("Mon Jan  2 15:04:05 2006")
 //	dateAsStr := date.String()
 //	fmt.Println(dateAsStr) // "2006-01-02 15:04:05 +0000 UTC"
 func ToDate(str string) *time.Time {
-	layouts := []string{
-		time.ANSIC,
-		time.UnixDate,
-		time.RubyDate,
-		time.RFC822,
-		time.RFC822Z,
-		time.RFC850,
-		time.RFC1123,
-		time.RFC1123Z,
-		time.Kitchen,
-		time.Stamp,
-		time.StampMilli,
-		time.StampMicro,
-		time.StampNano,
-		time.DateTime,
-		time.DateOnly,
-		time.TimeOnly,
-	}
 
-	for _, layout := range layouts {
+	for _, layout := range append(timeLayouts, dateLayouts...) {
 		if t, err := time.Parse(layout, str); err == nil {
 			return &t
 		}

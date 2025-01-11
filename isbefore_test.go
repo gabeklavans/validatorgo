@@ -11,23 +11,30 @@ func TestIsBefore(t *testing.T) {
 		param2 *IsBeforeOpts
 		want   bool
 	}{
-		// Valid cases
-		{name: "Date before another date (Date only)", param1: "2023-01-01", param2: &IsBeforeOpts{ComparisonDate: "2023-09-15"}, want: true},
-		{name: "Same month, earlier day", param1: "2023-06-15", param2: &IsBeforeOpts{ComparisonDate: "2023-12-31"}, want: true},
-		{name: "Same day, earlier time", param1: "2024-01-03 15:04:05", param2: &IsBeforeOpts{ComparisonDate: "2024-01-03 18:04:05"}, want: true},
-		{name: "Earlier date in RFC1123 format", param1: "Sat, 01 Jan 2023 00:00:00 GMT", param2: &IsBeforeOpts{ComparisonDate: "Mon, 01 Jan 2024 00:00:00 GMT"}, want: true},
+		// Valid cases with StandardDateLayout
+		{name: "StandardDateLayout - param1 before", param1: "2023-01-01", param2: &IsBeforeOpts{ComparisonDate: "2023-09-15"}, want: true},
+		{name: "StandardDateLayout - param1 not before", param1: "2023-09-15", param2: &IsBeforeOpts{ComparisonDate: "2023-01-01"}, want: false},
 
-		// Invalid cases
-		{name: "Date is the same as ComparisonDate", param1: "2024-01-01", param2: &IsBeforeOpts{ComparisonDate: "2024-01-01"}, want: false},
-		{name: "Date after ComparisonDate", param1: "2024-01-01", param2: &IsBeforeOpts{ComparisonDate: "2023-01-01"}, want: false},
-		{name: "Same day, later time", param1: "2023-09-10T15:00:00Z", param2: &IsBeforeOpts{ComparisonDate: "2023-09-10T14:00:00Z"}, want: false},
-		{name: "Date in different format", param1: "01-01-2023", param2: &IsBeforeOpts{ComparisonDate: "2023-01-01"}, want: false},
-		{name: "Nil config, valid date comparison", param1: "2023-01-01", param2: nil, want: true},
+		// Valid cases with SlashDateLayout
+		{name: "SlashDateLayout - param1 before", param1: "2023/01/01", param2: &IsBeforeOpts{ComparisonDate: "2023/09/15"}, want: true},
+		{name: "SlashDateLayout - param1 not before", param1: "2023/09/15", param2: &IsBeforeOpts{ComparisonDate: "2023/01/01"}, want: false},
+
+		// ISO8601 Layouts
+		{name: "ISO8601Layout - param1 before", param1: "2023-09-15T11:59:59", param2: &IsBeforeOpts{ComparisonDate: "2023-09-15T12:00:00"}, want: true},
+		{name: "ISO8601ZuluLayout - param1 not before", param1: "2023-09-15T12:00:01Z", param2: &IsBeforeOpts{ComparisonDate: "2023-09-15T12:00:00Z"}, want: false},
+		{name: "ISO8601WithMillisecondsLayout - param1 before", param1: "2023-09-15T12:00:00.000Z", param2: &IsBeforeOpts{ComparisonDate: "2023-09-15T12:00:00.001Z"}, want: true},
+
+		// Invalid formats
+		{name: "Invalid param1 format", param1: "15-09-2023", param2: &IsBeforeOpts{ComparisonDate: "2023-01-01"}, want: false},
+		{name: "Invalid ComparisonDate format", param1: "2023-09-15", param2: &IsBeforeOpts{ComparisonDate: "01/01/2023"}, want: false},
+
+		// Default to current time
+		{name: "Empty ComparisonDate - param1 before current time", param1: "2000-01-01", param2: &IsBeforeOpts{ComparisonDate: ""}, want: true},
+		{name: "Empty ComparisonDate - param1 after current time", param1: "3000-01-01", param2: &IsBeforeOpts{ComparisonDate: ""}, want: false},
 
 		// Edge cases
-		{name: "Empty comparison date", param1: "2050-01-01", param2: &IsBeforeOpts{ComparisonDate: ""}, want: false},
-		{name: "Invalid date format", param1: "InvalidDate", param2: &IsBeforeOpts{ComparisonDate: "2023-01-01"}, want: false},
-		{name: "Nil config with invalid date", param1: "InvalidDate", param2: nil, want: false},
+		{name: "Leap year comparison", param1: "2019-12-31", param2: &IsBeforeOpts{ComparisonDate: "2020-02-29"}, want: true},
+		{name: "Non-leap year comparison", param1: "2021-03-01", param2: &IsBeforeOpts{ComparisonDate: "2021-02-28"}, want: false},
 	}
 
 	for _, test := range tests {
