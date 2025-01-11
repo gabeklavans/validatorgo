@@ -29,10 +29,10 @@ func IsISO6346(str string) bool {
 	}
 
 	checkDig := capGrps[4]
-	len := len(str)
+	length := len(str)
 	sum := 0
 	for ind, char := range str {
-		if len-1 == ind {
+		if length-1 == ind {
 			break
 		}
 

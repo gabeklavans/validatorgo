@@ -13,7 +13,7 @@ type IsArrayOpts struct {
 	Max *uint // maximum array length
 }
 
-// A validator to check that a value is an array..
+// A validator to check that a value is an array.
 //
 // IsArrayOpts is a struct which defaults to { Min: nil, Max: nil }.
 //

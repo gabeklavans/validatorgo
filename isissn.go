@@ -59,19 +59,19 @@ func IsISSN(str string, opts *IsISSNOpts) bool {
 	}
 
 	strWithoutDashes := stripDashesAndSpaces(str)
-	len := len(strWithoutDashes)
+	length := len(strWithoutDashes)
 
 	sum := 0
 	checkVal := ""
 	for ind, char := range strWithoutDashes {
 		charVal := string(char)
 
-		if len-1 == ind {
+		if length-1 == ind {
 			checkVal = charVal
 			break
 		}
 
-		pos := len - ind
+		pos := length - ind
 		charInt, err := strconv.Atoi(charVal)
 
 		if err != nil {
