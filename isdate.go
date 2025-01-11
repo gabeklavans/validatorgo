@@ -14,7 +14,7 @@ const (
 	ISO8601WithMillisecondsLayout = "2006-01-02T15:04:05.000Z"
 )
 
-var allFormats = [6]string{StandardDateLayout, SlashDateLayout, DateTimeLayout, ISO8601Layout, ISO8601ZuluLayout, ISO8601WithMillisecondsLayout}
+var dateLayouts = [6]string{StandardDateLayout, SlashDateLayout, DateTimeLayout, ISO8601Layout, ISO8601ZuluLayout, ISO8601WithMillisecondsLayout}
 
 var (
 	isDateOptsDefaultFormat     string = StandardDateLayout
@@ -28,7 +28,7 @@ type IsDateOpts struct {
 }
 
 func dateMatchesAnyFormat(str string) bool {
-	for _, format := range allFormats {
+	for _, format := range dateLayouts {
 		_, err := time.Parse(format, str)
 		if err == nil {
 			return true
